@@ -4,9 +4,10 @@ namespace Curl;
 
 class BrowserClient extends Client
 {
+    // HTTP headers that uniquely identify this browser such as User-Agent
     protected $headers = array(
         'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Encoding' => 'identity',
+        'Accept-Encoding' => 'gzip, deflate',
         'Accept-Language' => 'en-US,en;q=0.5',
         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0'
     );
@@ -15,10 +16,12 @@ class BrowserClient extends Client
         CURLOPT_ENCODING => '', // apparently curl will decode gzip automatically when this is empty
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_AUTOREFERER => 1,
         CURLOPT_CONNECTTIMEOUT => 10,
         CURLOPT_TIMEOUT => 15
     );
 
+    /** @var string Where the cookies are stored */
     protected $cookie_file;
 
     public function __construct()
@@ -27,6 +30,20 @@ class BrowserClient extends Client
 
         $cookie_file = join(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), "BrowserClient"]);
         $this->setCookieFile($cookie_file);
+    }
+
+    /**
+     * Format ip:port or null to use direct connection
+     * @param $proxy_server
+     */
+    public function setProxy($proxy_server)
+    {
+        $this->options[CURLOPT_PROXY] = $proxy_server;
+    }
+
+    public function getProxy()
+    {
+        return !empty($this->options[CURLOPT_PROXY]) ? $this->options[CURLOPT_PROXY] : null;
     }
 
     public function setCookieFile($cookie_file)
@@ -41,6 +58,18 @@ class BrowserClient extends Client
     public function getCookieFile()
     {
         return $this->cookie_file;
+    }
+
+    // Manual alternative for: curl_getinfo($ch, CURLINFO_COOKIELIST));
+    public function getCookies()
+    {
+        $contents = @file_get_contents($this->getCookieFile());
+        return $contents;
+    }
+
+    public function setCookies($cookies)
+    {
+        return @file_put_contents($this->getCookieFile(), $cookies) !== false;
     }
 
     public function clearCookies()
