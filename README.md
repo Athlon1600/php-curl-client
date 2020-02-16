@@ -2,6 +2,11 @@
 
 A very simple curl client - less than 100 lines. Perfect for being a base class.
 
+## Installation
+
+```bash
+composer require athlon1600/php-curl-client
+```
 
 ## Examples
 
