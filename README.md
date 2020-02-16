@@ -1,6 +1,6 @@
-<center>
 ![](https://img.shields.io/github/last-commit/Athlon1600/php-curl-client.svg) 
-</center>
+
+
 
 # PHP Curl Client
 
