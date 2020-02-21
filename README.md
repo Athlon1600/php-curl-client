@@ -31,9 +31,14 @@ $body = $response->body;
 // curl_error() OR null
 $error = $response->error;
 
-// curl_info() array
+// CurlInfo instance
 $info = $response->info;
 ```
+
+**Update:** `$response->info` now returns an object that will have an auto-complete on your IDE.
+
+![](http://g.recordit.co/svt7mzJwsU.gif);
+
 
 Works with POST requests too:
 
