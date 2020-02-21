@@ -10,5 +10,7 @@ class Response
 
     // usually empty
     public $error;
+
+    /** @var CurlInfo */
     public $info;
 }

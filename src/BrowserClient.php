@@ -74,6 +74,6 @@ class BrowserClient extends Client
 
     public function clearCookies()
     {
-        unlink($this->getCookieFile());
+        @unlink($this->getCookieFile());
     }
 }

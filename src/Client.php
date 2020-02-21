@@ -65,7 +65,7 @@ class Client
         $response->status = $info ? $info['http_code'] : 0;
         $response->body = $result;
         $response->error = curl_error($ch);
-        $response->info = $info;
+        $response->info = new CurlInfo($info);
 
         curl_close($ch);
 
