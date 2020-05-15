@@ -45,10 +45,15 @@ class Client
             curl_setopt($ch, CURLOPT_URL, $uri);
 
             $post_data = is_array($params) ? http_build_query($params) : $params;
+
+            if ($method == 'POST') {
+                curl_setopt($ch, CURLOPT_POST, 1);
+            } else {
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+            }
+
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         }
-
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getCombinedHeaders($headers));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

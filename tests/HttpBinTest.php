@@ -83,4 +83,17 @@ class HttpBinTest extends TestCase
 
         $this->assertEquals(302, $response->status);
     }
+
+    // https://github.com/Kong/insomnia/issues/227
+    public function test_redirect_switch_to_get()
+    {
+        $client = new Client();
+
+        $response = $client->post('https://httpbin.org/redirect-to?url=https://www.google.com/&status_code=301');
+
+        // if CURLOPT_CUSTOMREQUEST was set, then redirect would follow from POST -> POST, rather than POST -> GET
+        // POST to google index gives 405
+        //  <p>The request method <code>POST</code> is inappropriate for the URL <code>/</code>.  <ins>That’s all we know.</ins>
+        $this->assertEquals(200, $response->status);
+    }
 }
