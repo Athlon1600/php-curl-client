@@ -61,7 +61,7 @@ class Client
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
         // last chance to override
-        curl_setopt_array($ch, is_array($curl_options) ? ($this->options + $curl_options) : $this->options);
+        curl_setopt_array($ch, is_array($curl_options) ? ($curl_options + $this->options) : $this->options);
 
         $result = curl_exec($ch);
         $info = curl_getinfo($ch);
