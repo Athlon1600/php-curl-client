@@ -21,6 +21,8 @@ class BrowserClient extends Client
         CURLOPT_TIMEOUT => 15
     );
 
+    protected static $storage_dir;
+
     /** @var string Where the cookies are stored */
     protected $cookie_file;
 
@@ -28,8 +30,18 @@ class BrowserClient extends Client
     {
         parent::__construct();
 
-        $cookie_file = join(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), "BrowserClient"]);
+        $cookie_file = join(DIRECTORY_SEPARATOR, [static::getStorageDirectory(), "BrowserClient"]);
         $this->setCookieFile($cookie_file);
+    }
+
+    protected function getStorageDirectory()
+    {
+        return static::$storage_dir ? static::$storage_dir : sys_get_temp_dir();
+    }
+
+    public static function setStorageDirectory($path)
+    {
+        static::$storage_dir = $path;
     }
 
     /**
