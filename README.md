@@ -9,7 +9,7 @@ A very simple curl client - less than 100 lines. Perfect for being a base class.
 ## Installation
 
 ```bash
-composer require athlon1600/php-curl-client
+composer require athlon1600/php-curl-client "^1.0"
 ```
 
 ## Examples
