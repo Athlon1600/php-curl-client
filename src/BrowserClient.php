@@ -39,6 +39,7 @@ class BrowserClient extends Client
         return static::$storage_dir ? static::$storage_dir : sys_get_temp_dir();
     }
 
+    // TODO: make this apply across all previous browser sessions too
     public static function setStorageDirectory($path)
     {
         static::$storage_dir = $path;
