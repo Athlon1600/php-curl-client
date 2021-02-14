@@ -21,7 +21,7 @@ class BrowserClient extends Client
         CURLOPT_TIMEOUT => 15
     );
 
-    protected static $storage_dir;
+    protected static $_storage_dir;
 
     /** @var string Where the cookies are stored */
     protected $cookie_file;
@@ -36,13 +36,13 @@ class BrowserClient extends Client
 
     protected function getStorageDirectory()
     {
-        return static::$storage_dir ? static::$storage_dir : sys_get_temp_dir();
+        return static::$_storage_dir ? static::$_storage_dir : sys_get_temp_dir();
     }
 
     // TODO: make this apply across all previous browser sessions too
     public static function setStorageDirectory($path)
     {
-        static::$storage_dir = $path;
+        static::$_storage_dir = $path;
     }
 
     /**
