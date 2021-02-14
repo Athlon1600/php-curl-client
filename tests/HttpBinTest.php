@@ -59,11 +59,9 @@ class HttpBinTest extends TestCase
     {
         $client = new Client();
 
-        $redirect_to = "https://azenv.net/";
+        $redirect_to = "https://www.google.com/";
 
-        $response = $client->request('GET', 'https://httpbin.org/redirect-to', [
-            'url' => $redirect_to
-        ]);
+        $response = $client->get('https://google.com');
 
         $this->assertEquals(200, $response->status);
         $this->assertEquals($redirect_to, $response->info['url']);
@@ -75,17 +73,15 @@ class HttpBinTest extends TestCase
 
         $redirect_to = "https://azenv.net/";
 
-        $response = $client->request('GET', 'https://httpbin.org/redirect-to', [
-            'url' => $redirect_to
-        ], [], [
+        $response = $client->request('GET', 'https://google.com', [], [], [
             CURLOPT_FOLLOWLOCATION => 0
         ]);
 
-        $this->assertEquals(302, $response->status);
+        $this->assertEquals(301, $response->status);
     }
 
     // https://github.com/Kong/insomnia/issues/227
-    public function test_redirect_switch_to_get()
+    public function redirect_switch_to_get()
     {
         $client = new Client();
 

@@ -24,4 +24,16 @@ class BrowserTest extends TestCase
 
         $this->assertEquals($cookies, $json['cookies']);
     }
+
+    public function test_custom_cookie_storage()
+    {
+        @unlink('./BrowserClient');
+
+        BrowserClient::setStorageDirectory('./');
+
+        $browser = new BrowserClient();
+        $browser->get('http://www.yahoo.com');
+
+        $this->assertTrue(file_exists('./BrowserClient'));
+    }
 }
