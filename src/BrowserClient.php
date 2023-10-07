@@ -48,15 +48,22 @@ class BrowserClient extends Client
     /**
      * Format ip:port or null to use direct connection
      * @param $proxy_server
+     * @param $proxy_type
      */
-    public function setProxy($proxy_server)
+    public function setProxy($proxy_server, $proxy_type = CURLPROXY_HTTP)
     {
         $this->options[CURLOPT_PROXY] = $proxy_server;
+        $this->options[CURLOPT_PROXYTYPE] = $proxy_type;
     }
 
     public function getProxy()
     {
         return !empty($this->options[CURLOPT_PROXY]) ? $this->options[CURLOPT_PROXY] : null;
+    }
+
+    public function getProxyType()
+    {
+        return !empty($this->options[CURLOPT_PROXYTYPE]) ? $this->options[CURLOPT_PROXYTYPE] : null;
     }
 
     public function setCookieFile($cookie_file)
