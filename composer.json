@@ -4,6 +4,7 @@
   "keywords": ["php curl client"],
   "license": "MIT",
   "require": {
+    "php": "^7.3|^8.0",
     "ext-curl": "*",
     "ext-json": "*"
   },
