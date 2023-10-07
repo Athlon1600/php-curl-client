@@ -1,6 +1,6 @@
-![](https://img.shields.io/github/last-commit/Athlon1600/php-curl-client.svg) 
-
-
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Athlon1600/php-curl-client/ci.yml)
+![](https://img.shields.io/github/last-commit/Athlon1600/php-curl-client.svg)
+![Packagist Downloads (custom server)](https://img.shields.io/packagist/dm/Athlon1600/php-curl-client)
 
 # PHP Curl Client
 
