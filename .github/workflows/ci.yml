@@ -31,5 +31,10 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - name: Static analysis
+        run: |
+          composer require --dev phpstan/phpstan
+          vendor/bin/phpstan analyse src
+
       - name: Run PHPUnit
-        run: vendor/bin/phpunit tests
+        run: vendor/bin/phpunit --verbose --colors=always tests
