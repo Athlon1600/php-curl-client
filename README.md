@@ -1,4 +1,6 @@
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Athlon1600/php-curl-client/ci.yml)
+[![CI](https://github.com/Athlon1600/php-curl-client/actions/workflows/ci.yml/badge.svg)](https://github.com/Athlon1600/php-curl-client/actions/workflows/ci.yml)
+![PHP Version](https://img.shields.io/packagist/php-v/athlon1600/php-curl-client)
+![GitHub License](https://img.shields.io/github/license/athlon1600/php-curl-client)
 ![](https://img.shields.io/github/last-commit/Athlon1600/php-curl-client.svg)
 ![Packagist Downloads (custom server)](https://img.shields.io/packagist/dm/Athlon1600/php-curl-client)
 

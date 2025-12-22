@@ -1,7 +1,7 @@
 {
   "name": "athlon1600/php-curl-client",
   "description": "Simple PHP cURL Client",
-  "keywords": ["php curl client"],
+  "keywords": ["php curl client", "http client", "curl", "php-curl"],
   "license": "MIT",
   "require": {
     "php": "^7.3|^8.0",
