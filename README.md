@@ -37,7 +37,7 @@ $info = $response->info;
 
 **Update:** `$response->info` now returns an object that will have an auto-complete on your IDE.
 
-![](http://g.recordit.co/svt7mzJwsU.gif);
+![](etc/curl-info-ide-autocomplete.gif);
 
 
 Works with POST requests too:
