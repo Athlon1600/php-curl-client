@@ -6,7 +6,9 @@
 
 # PHP Curl Client
 
-A very simple curl client - less than 100 lines. Perfect for being a base class.
+Very simple curl client. Easy to use and extend to make it into your own custom HTTP client.
+
+:heavy_check_mark: Supports PHP from version 7.3 to 8.4
 
 ## Installation
 
