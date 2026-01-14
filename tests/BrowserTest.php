@@ -3,6 +3,7 @@
 namespace Curl\Tests;
 
 use Curl\BrowserClient;
+use Curl\UserAgents;
 use PHPUnit\Framework\TestCase;
 
 class BrowserTest extends TestCase
@@ -35,5 +36,17 @@ class BrowserTest extends TestCase
         $browser->get('http://www.yahoo.com');
 
         $this->assertTrue(file_exists('./BrowserClient'));
+    }
+
+    public function test_user_agent()
+    {
+        $client = new BrowserClient();
+
+        $randomAgent = UserAgents::getRandomGsaUserAgent();
+        $client->setUserAgent($randomAgent);
+
+        $response = $client->get("https://httpbin.org/headers");
+
+        $this->assertStringContainsString($randomAgent, $response->body);
     }
 }

@@ -4,12 +4,11 @@ namespace Curl;
 
 class BrowserClient extends Client
 {
-    // HTTP headers that uniquely identify this browser such as User-Agent
+    // HTTP headers that uniquely identify this browser
     protected $headers = array(
         'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Accept-Encoding' => 'gzip, deflate',
-        'Accept-Language' => 'en-US,en;q=0.5',
-        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0'
+        'Accept-Language' => 'en-US,en;q=0.5'
     );
 
     protected $options = array(
@@ -32,6 +31,10 @@ class BrowserClient extends Client
 
         $cookie_file = join(DIRECTORY_SEPARATOR, [static::getStorageDirectory(), "BrowserClient"]);
         $this->setCookieFile($cookie_file);
+
+        // Google search seems sensitive to User-Agent it receives
+        $firefox = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0';
+        $this->setUserAgent($firefox);
     }
 
     protected function getStorageDirectory()
@@ -95,5 +98,19 @@ class BrowserClient extends Client
     public function clearCookies()
     {
         @unlink($this->getCookieFile());
+    }
+
+    public function setCurlOption($option, $value): void
+    {
+        if ($value === null) {
+            unset($this->options[$option]);
+        } else {
+            $this->options[$option] = $value;
+        }
+    }
+
+    public function setUserAgent($user_agent): void
+    {
+        $this->setCurlOption(CURLOPT_USERAGENT, $user_agent);
     }
 }
